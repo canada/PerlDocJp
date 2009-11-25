@@ -1,0 +1,18 @@
+<div class=path> 
+<a href="/">ホーム</a> &gt;
+モジュール一覧
+</div> 
+
+<center class=categories></center>
+
+<table width="100%"> 
+[% FOREACH item IN items %]
+[% count = count + 1 -%]
+[% IF count % 2 == 1; class = 'r'; ELSE ; class = 's'; END -%]
+  <tr class=[% class %]> 
+    <td nowrap><a href="~[% item.author_uid_lc %]/[% item.dist_name %]">[% item.dist_name %]</a></td> 
+    <td width="80%">[% item.dist_name %]の日本語訳</td> 
+    <td><small><a href="/~[% item.author_uid %]">[% item.author_name %]</a></small></td> 
+  </tr> 
+[% END %]
+</table>

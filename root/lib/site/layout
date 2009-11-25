@@ -1,0 +1,5 @@
+[% PROCESS site/header %]
+
+[% content %]
+
+[% PROCESS site/footer %]

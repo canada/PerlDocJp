@@ -1,0 +1,41 @@
+ <div class=box> 
+   <div class=t1>[% items.author.author_name %]</div> 
+
+  <table style="min-height: 80px"> 
+  <tr> 
+   <td class=label>CPAN ディレクトリ</td> 
+   <td class=cell><a href="未実装">[% items.author.author_uid %]</a> 
+<small>[&nbsp;<a href="未実装">アーカイブ</a>&nbsp;]</small> 
+</td> 
+  </tr> 
+  <tr> 
+   <td class=label>電子メール</td> 
+   <td class=cell><a href="mailto:[% items.author.author_email %]">[% items.author.author_email %]</a></td> 
+  </tr> 
+  <tr> 
+   <td class=label>Webサイト</td> 
+   <td class=cell>未実装</td> 
+  </tr> 
+  </table> 
+ </div> 
+
+ <div class=box> 
+  <h2 class=t2>リリース</h2> 
+  <table width="100%"> 
+   <tr> 
+    <th colspan=3>ディストリビューション
+      </th> 
+    <th>リリース</th> 
+   </tr> 
+[% FOREACH item IN items.dist %]
+   [% count = count + 1 -%]
+   [% IF count % 2 == 1; class = 'r'; ELSE ; class = 's'; END -%]
+   <tr class=[% class %]> 
+    <td><a href="[% item.dist_name %]/">[% item.dist_name %]</a></td> 
+    <td>[% item.dist_name %]の日本語訳</td> 
+    <td><small>[<a href="未実装">CPANダウンロード</a>]&nbsp;[<a href="未実装">ブラウズ</a>]</small></td> 
+    <td nowrap>未実装</td> 
+   </tr> 
+[% END %]
+  </table> 
+ </div> 

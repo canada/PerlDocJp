@@ -1,0 +1,43 @@
+<br><div class=t4> 
+<small> 
+Results <b>1</b> - <b>10</b> of
+<b>[% items.found %]</b> Found</small></div> 
+<div class=pages><table width="100%"><tr> 
+<td><small> <b>1</b> &middot;
+<a href="/search?m=all&q=YAML&s=11">2</a> &middot;
+<a href="/search?m=all&q=YAML&s=21">3</a> &middot;
+<a href="/search?m=all&q=YAML&s=31">4</a> &middot;
+<a href="/search?m=all&q=YAML&s=41">5</a> &middot;
+<a href="/search?m=all&q=YAML&s=51">6</a> &middot;
+<a href="/search?m=all&q=YAML&s=11">Next &gt;&gt;</a> 
+</small></td> 
+<td align=right><small><b>Page Size</b>: 
+<a href="/search?m=all&q=YAML&s=1&n=10">10</a>&nbsp;
+<a href="/search?m=all&q=YAML&s=1&n=20">20</a>&nbsp;
+<a href="/search?m=all&q=YAML&s=1&n=50">50</a>&nbsp;
+<a href="/search?m=all&q=YAML&s=1&n=100">100</a>&nbsp;
+</small></td></tr></table> 
+</div> 
+<!--results--> 
+[% FOREACH item IN items.result %]
+<!--item--> 
+<p><h2 class=sr><a href="[% item.uri %]"><b>[% item.title %]</b></a></h2> 
+<small>[% item.misc %]</small><br/> 
+<small>   <a href="[% item.title %]">YAML-0.70</a> 
+
+-
+<span class=date>[% item.mdate %]訳</span> -
+<a href="/~[% item.author_uid %]/">[% item.author_name %]</a> 
+</small> 
+<!--end item--> 
+[% END %]
+<br> 
+ 
+<center> <b>1</b> &middot;
+<a href="/search?m=all&q=YAML&s=11">2</a> &middot;
+<a href="/search?m=all&q=YAML&s=21">3</a> &middot;
+<a href="/search?m=all&q=YAML&s=31">4</a> &middot;
+<a href="/search?m=all&q=YAML&s=41">5</a> &middot;
+<a href="/search?m=all&q=YAML&s=51">6</a> &middot;
+<a href="/search?m=all&q=YAML&s=11">Next &gt;&gt;</a> 
+</center> 

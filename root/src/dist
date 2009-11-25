@@ -1,0 +1,89 @@
+  <div class=path> 
+<div id=permalink class="noprint"><a href="/dist/Acme-Bleach/">permalink</a></div> 
+  <a href="/">ホーム</a> &gt; <a href="/~[% items.dist.author_uid_lc %]/">[% items.dist.author_fullname %]</a> &gt;
+  [% items.dist.dist_name %]
+ </div> 
+ 
+ <div class=box> 
+  <h1 class=t1>[% items.dist.dist_name %]</h1> 
+<a href="http://hexten.net/cpan-faces/"><img src="http://www.gravatar.com/avatar.php?gravatar_id=3d4a6a089964a744d7b3cf2415f81951&rating=G&size=80&default=http%3A%2F%2Fst.pimg.net%2Ftucs%2Fimg%2Fwho.png" width=80 height=80 
+style="float:right"
+/></a> 
+ 
+  <table> 
+   <tr> 
+    <td class=label>このリリース</td> 
+    <td class=cell>[% items.dist.dist_name %]</td> 
+    <td><small>&nbsp;[<a href="/CPAN/authors/id/D/DC/DCONWAY/[% items.dist.dist_name %].tar.gz">ダウンロード(CPANサイト・未実装)</a>]
+    [<a href="http://search.cpan.org/src/[% items.dist.author_uid %]/[% items.dist.dist_name %]/">内容(cpan.org)</a>]&nbsp;</small></td> 
+    <td><small>日付未実装</small> 
+    </td> 
+   </tr> 
+
+   <tr> 
+    <td class=label>最新リリース</td> 
+    <td class=cell>[% items.dist.latest_release %]</td> 
+    <td><small>&nbsp;[<a href="/CPAN/authors/id/D/DC/DCONWAY/[% items.dist.latest_release %].tar.gz">ダウンロード(CPANサイト・未実装)</a>]
+    [<a href="http://search.cpan.org/src/[% items.dist.author_uid %]/[% items.dist.latest_release %]/">内容(cpan.org)</a>]&nbsp;</small></td> 
+    <td><small>日付未実装</small> 
+    </td> 
+   </tr> 
+   <tr> 
+    <td class=label>翻訳者</td> 
+    <td class=cell>未実装</td> 
+    <td><small>ドキュメント内に明記</small></td> 
+    <td><small>日付未実装</small> 
+    </td> 
+   </tr> 
+ 
+ 
+ 
+ 
+   <tr> 
+    <td class=label>ライセンス</td> 
+    <td class=cell colspan=3> 
+未実装
+</td> 
+   </tr> 
+  </table> 
+ </div> 
+ 
+ <div class=box> 
+  <h2 class=t2>モジュール</h2> 
+  <table width="100%"> 
+[% FOREACH module IN items.pod %]
+[% count = count + 1 %][% IF count % 2 == 1; class = "r" ; ELSE ; class = "s" ; END %]
+   <tr class=[% class %]> 
+    <td> 
+     <a href="/~[% items.dist.author_uid_lc %]/[% module.doc_loc %]">[% module.doc_name %]</a> 
+    </td> 
+    <td width="99%"> 
+     <small>[% module.doc_desc %]</small> 
+    </td> 
+    <td>&nbsp;</td> 
+    <td class="version">1.12</td> 
+   </tr> 
+[% END %]
+</table>
+</div>
+
+ [% IF items.doc.size != 0 %]
+ <div class=box> 
+  <h2 class=t2>その他文書</h2> 
+  <table width="100%"> 
+[% FOREACH document IN items.doc %]
+[% count = count + 1 %][% IF count % 2 == 1; class = "r" ; ELSE ; class = "s" ; END %]
+   <tr class=[% class %]> 
+    <td> 
+     <a href="/~[% items.dist.author_uid_lc %]/[% document.mod_loc %]">[% document.doc_name %]</a> 
+    </td> 
+    <td width="99%"> 
+     <small>[% document.doc_desc %]</small> 
+    </td> 
+    <td>&nbsp;</td> 
+    <td class="version"><small>未実装</small></td> 
+   </tr> 
+[% END %]
+</table>
+</div>
+[% END %]

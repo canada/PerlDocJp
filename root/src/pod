@@ -1,0 +1,10 @@
+<div class=path>
+<a href="/">ホーム</a> &gt;
+<a href="/~[% items.author %]/">[% items.author %]</a> &gt;
+<a href="/~[% items.author %]/[% items.dist %]">[% items.dist %]</a> &gt;
+[% items.module %]
+</div>
+
+<font color=red size=-2>キャッシュサーバによる不具合がおきています。ドキュメントの内容がおかしい時はリロードしてください！</font>
+
+[% items.html %]
