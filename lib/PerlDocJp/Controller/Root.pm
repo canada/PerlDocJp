@@ -42,6 +42,7 @@ sub index :Path :Args(0) {
 # template does everything
 sub faq :Local { } 
 sub feedback :Local { }
+sub mirror :Local { }
 
 sub search :Local {
     my ( $self, $c ) = @_;
@@ -65,7 +66,7 @@ sub author :LocalRegex('^~([-a-z*]+)/?$') {
 }
 
 use Pod::L10N::Html;
-use POSIX 'setsid';
+use POSIX (qw/setsid mkfifo/);
 use Apache2::SubProcess;
 
 sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
@@ -78,21 +79,25 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
     my $html;
 
     if($doc =~ /\.pod$/){
+        my $fifo = "/var/lib/perldocjp/l10n_html";
+
         $SIG{CHLD} = 'IGNORE';
         if(my $pid = fork){
-            open(my $read, "</tmp/l10n_html");
+            open(my $read, "<$fifo");
             $html = join(q{}, <$read>);
             close($read);
             wait;
         }elsif(defined $pid){
         
-            chdir('/tmp');
+            #mkdir("/tmp/perldoc_$$");
+            chdir("/tmp/");
             setsid;
-            pod2html("$dir$dist/$doc", '--outfile=/tmp/l10n_html');
+            pod2html("$dir$dist/$doc", "--outfile=$fifo");
             CORE::exit(0);
         }else{
             $c->log->warn("Can't fork...");
         }
+
 
         $html = Encode::decode('Guess', $html);
         $html = Encode::encode('utf8', $html);

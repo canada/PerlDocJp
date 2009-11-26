@@ -5,6 +5,4 @@
 [% items.module %]
 </div>
 
-<font color=red size=-2>キャッシュサーバによる不具合がおきています。ドキュメントの内容がおかしい時はリロードしてください！</font>
-
 [% items.html %]
