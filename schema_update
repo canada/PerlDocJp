@@ -1,1 +1,0 @@
-script/perldocjp_create.pl model DBIC DBIC::Schema PerlDocJp::Schema create=static dbi:mysql:perldocjp root mymymy
