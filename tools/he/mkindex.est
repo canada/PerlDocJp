@@ -1,0 +1,1 @@
+estcmd create -attr @title str -attr @author str -attr @genre str casket
