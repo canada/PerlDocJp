@@ -28,7 +28,7 @@ PerlDocJp::Controller::Root - Root Controller for PerlDocJp
 =head2 index
 
 =cut
-sub index : Path : Args(0) {
+sub author : Local {
     my ( $self, $c) = @_;
 
     my $count = 0;
