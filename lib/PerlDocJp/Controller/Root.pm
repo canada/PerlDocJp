@@ -53,33 +53,22 @@ sub search :Local {
     $c->stash->{items}{result} = $result;
 }
 
-sub author :LocalRegex('^~([-a-z*]+)/?$') {
-    my ( $self, $c) = @_;
-    my $uid = $c->req->snippets->[0];
-    #$c->response->body( "$authさんの製作物一覧・鋭意実装中" );
-    my $model = $c->model('Author');
-    my $auth = $model->get($uid);
-    use YAML::Syck;
-    $c->stash->{items}{author} = $auth;
-    $c->stash->{items}{dist} = $model->get_dist($auth->{author_id});
-    $c->log->warn(YAML::Syck::Dump($c->stash->{items}{dist}));
-}
 
 use Pod::L10N::Html;
-use POSIX (qw/setsid mkfifo/);
+use POSIX (qw/setsid/);
 use Apache2::SubProcess;
 
 sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
     my ( $self, $c) = @_;
 
-    my $dir = $c->config->{source}{modules};
+    my $dir  = $c->config->{source}{modules};
     my $auth = $c->req->snippets->[0];
     my $dist = $c->req->snippets->[1];
     my $doc  = $c->req->snippets->[2];
     my $html;
 
     if($doc =~ /\.pod$/){
-        my $fifo = "/var/lib/perldocjp/l10n_html";
+        my $fifo = "/var/lib/perldocjp/l10n_html"; # it must be named pipe or documents will be out of order.
 
         $SIG{CHLD} = 'IGNORE';
         if(my $pid = fork){
@@ -89,8 +78,8 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
             wait;
         }elsif(defined $pid){
         
-            #mkdir("/tmp/perldoc_$$");
-            chdir("/tmp/");
+            mkdir("/tmp/perldoc_$$") or die;
+            chdir("/tmp/perldoc_$$");
             setsid;
             pod2html("$dir$dist/$doc", "--outfile=$fifo");
             CORE::exit(0);
@@ -110,9 +99,9 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
         $doc =~ s/\.pod$//;
         $doc =~ s#/#::#g;
     }
-    $c->{stash}{items}{html} = $html; 
+    $c->{stash}{items}{html}   = $html; 
     $c->{stash}{items}{author} = $auth;
-    $c->{stash}{items}{dist} = $dist;
+    $c->{stash}{items}{dist}   = $dist;
     $c->{stash}{items}{module} = $doc;
 }
 
@@ -160,6 +149,25 @@ sub _dist2mod {
     return (join($join ? $join : "::", @mod), $ver);
 }
 
+sub autho_index : Local {
+    my ( $self, $c) = @_;
+
+    my $count = 0;
+    foreach('a' .. 'z'){
+        $c->stash->{items}[$count]{uc} = uc($_);
+        $c->stash->{items}[$count]{lc} = lc($_);
+        $count++;
+    }
+}
+
+sub author :LocalRegex('^~([-a-z*]+)/?$') { # author xxx's page
+    my ( $self, $c) = @_;
+    my $uid   = $c->req->snippets->[0];
+    my $model = $c->model('Author');
+    my $auth  = $model->get($uid);
+    $c->stash->{items}{author} = $auth;
+    $c->stash->{items}{dist}   = $model->get_dist($auth->{author_id});
+}
 sub default :Path {
     my ( $self, $c ) = @_;
     $c->response->body( 'Page not found' );

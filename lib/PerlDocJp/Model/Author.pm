@@ -15,6 +15,16 @@ sub get {
     \%rs;
 }
 
+sub get_by_alphabet {
+    my($self, $alpha) = @_;
+    my $rs = $self->db->resltset('Author')->search({
+        author_uid => { 'LIKE' => "$alpha\%" },
+    },{
+          order_by => 'author_uid',
+    });
+    return $rs;
+}
+
 sub get_dist {
     my($self, $id) = @_;
 
@@ -22,8 +32,8 @@ sub get_dist {
         author_id => $id,
     }, {
         "+select" => [ qw/dist_id.dist_name dist_id.latest_release/ ],
-        "+as" => [ qw/dist_name latest_release/ ],
-        join => 'dist_id',
+            "+as" => [ qw/dist_name latest_release/ ],
+            join  => 'dist_id',
     })->all;
     my @return;
     foreach(@rs){
