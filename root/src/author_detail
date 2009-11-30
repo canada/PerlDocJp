@@ -4,7 +4,7 @@
   <table style="min-height: 80px"> 
   <tr> 
    <td class=label>CPAN ディレクトリ</td> 
-   <td class=cell><a href="未実装">[% items.author.author_uid %]</a> 
+   <td class=cell><a href="http://search.cpan.org/~[% items.author.author_uid_lc %]/">[% items.author.author_uid %]</a> 
 <small>[&nbsp;<a href="未実装">アーカイブ</a>&nbsp;]</small> 
 </td> 
   </tr> 
@@ -27,15 +27,19 @@
       </th> 
     <th>リリース</th> 
    </tr> 
+[% class = 'r' -%]
 [% FOREACH item IN items.dist %]
    [% count = count + 1 -%]
-   [% IF count % 2 == 1; class = 'r'; ELSE ; class = 's'; END -%]
    <tr class=[% class %]> 
+   [% IF count % 2 == 1; class = 's'; ELSE ; class = 'r'; END -%]
     <td><a href="[% item.dist_name %]/">[% item.dist_name %]</a></td> 
     <td>[% item.dist_name %]の日本語訳</td> 
     <td><small>[<a href="未実装">CPANダウンロード</a>]&nbsp;[<a href="未実装">ブラウズ</a>]</small></td> 
     <td nowrap>未実装</td> 
    </tr> 
 [% END %]
+  <tr class=[% class %]>
+  <td rowspan=3> <a href="http://search.cpan.org/~[% items.author.author_uid_lc %]/">more..</a></td>
+  </tr>
   </table> 
  </div> 

@@ -149,25 +149,6 @@ sub _dist2mod {
     return (join($join ? $join : "::", @mod), $ver);
 }
 
-sub autho_index : Local {
-    my ( $self, $c) = @_;
-
-    my $count = 0;
-    foreach('a' .. 'z'){
-        $c->stash->{items}[$count]{uc} = uc($_);
-        $c->stash->{items}[$count]{lc} = lc($_);
-        $count++;
-    }
-}
-
-sub author :LocalRegex('^~([-a-z*]+)/?$') { # author xxx's page
-    my ( $self, $c) = @_;
-    my $uid   = $c->req->snippets->[0];
-    my $model = $c->model('Author');
-    my $auth  = $model->get($uid);
-    $c->stash->{items}{author} = $auth;
-    $c->stash->{items}{dist}   = $model->get_dist($auth->{author_id});
-}
 sub default :Path {
     my ( $self, $c ) = @_;
     $c->response->body( 'Page not found' );
