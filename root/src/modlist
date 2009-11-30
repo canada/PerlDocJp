@@ -12,7 +12,7 @@
   <tr class=[% class %]> 
     <td nowrap><a href="~[% item.author_uid_lc %]/[% item.dist_name %]">[% item.dist_name %]</a></td> 
     <td width="80%">[% item.dist_name %]の日本語訳</td> 
-    <td><small><a href="/~[% item.author_uid_lc %]">[% item.author_name %]</a></small></td> 
+    <td><small><a href="/~[% item.author_uid_lc %]/">[% item.author_name %]</a></small></td> 
   </tr> 
 [% END %]
 </table>

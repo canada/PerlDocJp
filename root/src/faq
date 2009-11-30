@@ -1,32 +1,35 @@
 <div class="menu"> 
 <ul> 
 <li><a href="/">Home</a></li> 
-<li><a HREF="joinus">参加するには?</a>(<a HREF="joinus#ml">メーリングリスト</a>)</li> 
-<li><a HREF="translation">翻訳の入手</a></li> 
-<li><a HREF="event">イベント</a></li> 
-<li><a HREF="perldocjp-faq">FAQ</a></li> 
-<li><a HREF="link">リンク</a></li> 
+<li><a HREF="http://groups.google.co.jp/group/new_perldocjp?hl=ja">このサイトに参加するには?</a>
+<li><a HREF="http://perldocjp.sourceforge.jp/joinus">翻訳に参加するには?</a> (<a HREF="http://perldocjp.sourceforge.jp/joinus#ml">翻訳・メーリングリスト</a>)</li> 
+<li><a HREF="http://perldocjp.sourceforge.jp/translation">翻訳の入手</a></li> 
+<li><a HREF="http://perldocjp.sourceforge.jp/event">イベント</a></li> 
+<li><a HREF="http://perldocjp.sourceforge.jp/perldocjp-faq">FAQ</a></li> 
+<li><a HREF="http://perldocjp.sourceforge.jp/link">リンク</a></li> 
 <li class="sourceforge"><a HREF="http://sourceforge.jp/projects/perldocjp/">sourceforge site</a></li> 
 </ul> 
 </div> 
  
- <h1>Japanized Perl Resources Project</h1> 
+ <h1>New PerlDocJP作成委員会</h1> 
   
   <h2>プロジェクト概要</h2> 
   <P> 
-  Perlの日本語リソースを収集するとともに、新たな文書を翻訳するプロジェクトです。<br> 
-  話し合いは<a href="http://www.freeml.com/perldocjp">Perlドキュメント日本語訳メーリングリスト</a>にて行われています。
+  perldocjpのプロジェクトの成果物を利用しやすいように、またより情報豊かにするように、<BR>
+  全てのPerlユーザーの利益となるようなポータルサイトを作ろうというプロジェクトです。
   </P> 
   <UL> 
-  <LI><A HREF="joinus">参加するには？</A> ...... perldocjp への参加の仕方について。
-  <LI><A HREF="joinus#ml">メーリングリスト</A> ...... 各種メーリングリストについての説明。
-  <LI><A HREF="translation">翻訳の入手</A> ...... 翻訳の入手方法。CVSでの取得など。
-  <LI><A HREF="event">イベント</a> ...... 講演、オフラインミーティングなどの情報。
-  <LI><A HREF="perldocjp-faq">FAQ</A> ...... perldoc.jpのFAQ集。
-  <LI><A HREF="link">リンク</a> ...... 関連リンク。
-  <LI><A HREF="http://sourceforge.jp/projects/perldocjp/">sourceforge site</a> ...... sourceforge.jp のプロジェクトページ。
+  <li><a HREF="http://groups.google.co.jp/group/new_perldocjp?hl=ja">このサイトを作ろうという活動に参加するには?</a>
+  <li><a HREF="http://github.com/canada/PerlDocJp">このサイトのソースコードを入手するには？(GitHub)</a>
+  </UL>
+  <UL>
+  <LI><A HREF="http://perldocjp.sourceforge.jp/joinus">翻訳に参加するには？</A> ...... perldocjp への参加の仕方について。
+  <LI><A HREF="http://perldocjp.sourceforge.jp/joinus#ml">翻訳メーリングリスト</A> ...... 各種メーリングリストについての説明。
+  <LI><A HREF="http://perldocjp.sourceforge.jp/translation">翻訳の入手</A> ...... 翻訳の入手方法。CVSでの取得など。
+  <LI><A HREF="http://perldocjp.sourceforge.jp/perldocjp-faq">翻訳FAQ</A> ...... perldoc.jpのFAQ集。
+  <LI><A HREF="http://sourceforge.jp/projects/perldocjp/">sourceforge site</a> ...... sourceforge.jp の翻訳プロジェクトページ。
   </UL> 
-  <h3>翻訳へのリンク</h3> 
+  <h3>翻訳への外部リンク</h3> 
   <UL> 
   <li><A HREF="http://perldoc.jp/docs/modules/">翻訳されたモジュール</a> (perldoc.jp)
   <li><A HREF="http://perldoc.jp/docs/perl/5.10.0/">翻訳されたコアドキュメント(Perl 5.10.0)</a> (perldoc.jp)
