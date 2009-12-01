@@ -1,22 +1,9 @@
-<div class="menu"> 
-<ul> 
-<li><a href="/">Home</a></li> 
-<li><a HREF="http://groups.google.co.jp/group/new_perldocjp?hl=ja">このサイトに参加するには?</a>
-<li><a HREF="http://perldocjp.sourceforge.jp/joinus">翻訳に参加するには?</a> (<a HREF="http://perldocjp.sourceforge.jp/joinus#ml">翻訳・メーリングリスト</a>)</li> 
-<li><a HREF="http://perldocjp.sourceforge.jp/translation">翻訳の入手</a></li> 
-<li><a HREF="http://perldocjp.sourceforge.jp/event">イベント</a></li> 
-<li><a HREF="http://perldocjp.sourceforge.jp/perldocjp-faq">FAQ</a></li> 
-<li><a HREF="http://perldocjp.sourceforge.jp/link">リンク</a></li> 
-<li class="sourceforge"><a HREF="http://sourceforge.jp/projects/perldocjp/">sourceforge site</a></li> 
-</ul> 
-</div> 
- 
  <h1>New PerlDocJP作成委員会</h1> 
   
   <h2>プロジェクト概要</h2> 
   <P> 
   perldocjpのプロジェクトの成果物を利用しやすいように、またより情報豊かにするように、<BR>
-  全てのPerlユーザーの利益となるようなポータルサイトを作ろうというプロジェクトです。
+  <em>全てのPerlユーザーの利益となる</em>ポータルサイトを作ろうというプロジェクトです。
   </P> 
   <UL> 
   <li><a HREF="http://groups.google.co.jp/group/new_perldocjp?hl=ja">このサイトを作ろうという活動に参加するには?</a>
