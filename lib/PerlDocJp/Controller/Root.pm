@@ -74,10 +74,10 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
         $doc =~ s/\.pod$//;
         $doc =~ s#/#::#g;
     }
-    $c->{stash}{items}{html}   = $html; 
-    $c->{stash}{items}{author} = $auth;
-    $c->{stash}{items}{dist}   = $dist;
-    $c->{stash}{items}{module} = $doc;
+    $c->stash->{items}{html}   = $html; 
+    $c->stash->{items}{author} = $auth;
+    $c->stash->{items}{dist}   = $dist;
+    $c->stash->{items}{module} = $doc;
 }
 
 sub dist :LocalRegex('^~([-a-z*]+)/([^/]+)/?$') {
@@ -91,9 +91,9 @@ sub dist :LocalRegex('^~([-a-z*]+)/([^/]+)/?$') {
     my $doc  = $c->model('Document');
     my $dist = $c->model('Dist');
 
-    $c->{stash}{items}{pod}  = $doc->get_mod_by_loc($dist_name);
-    $c->{stash}{items}{doc}  = $doc->get_doc_by_loc($dist_name);
-    $c->{stash}{items}{dist} = $dist->get($dist_name);
+    $c->stash->{items}{pod}  = $doc->get_mod_by_loc($dist_name);
+    $c->stash->{items}{doc}  = $doc->get_doc_by_loc($dist_name);
+    $c->stash->{items}{dist} = $dist->get($dist_name);
 
 }
 
@@ -105,7 +105,7 @@ sub modlist :Local {
     my $dist = $c->model('Dist');
     $dist->db($c->model('DBIC'));
 
-    $c->{stash}{items} = $dist->get_all();
+    $c->stash->{items} = $dist->get_all();
 }
 
 sub _dist2mod {
