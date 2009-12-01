@@ -2,9 +2,11 @@ package PerlDocJp::Controller::Root;
 use strict;
 use warnings;
 use parent 'Catalyst::Controller';
-use YAML::Syck;
 use Encode;
 use Encode::Guess qw/eucjp utf8 shiftjis 7bit-jis/;
+use Pod::L10N::Html;
+use POSIX (qw/setsid/);
+use YAML::Syck;
 
 __PACKAGE__->config->{namespace} = '';
 
@@ -29,9 +31,6 @@ sub search :Local {
 }
 
 
-use Pod::L10N::Html;
-use POSIX (qw/setsid/);
-use Apache2::SubProcess;
 
 sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
     my ( $self, $c) = @_;
