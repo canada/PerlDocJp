@@ -80,7 +80,7 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
             wait;
         }elsif(defined $pid){
 
-            mkdir("/tmp/perldoc_$$");
+            mkdir("/tmp/perldoc_$$") or die;
             chdir("/tmp/perldoc_$$");
             setsid;
             pod2html("$dir$dist/$doc", "--outfile=$fifo");

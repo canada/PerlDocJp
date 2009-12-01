@@ -43,7 +43,7 @@ sub author_by_alphabet :Chained('/') :PathPart('author') :Args(1) {
     my($self, $c, $alpha) = @_;
     ($alpha) = lc($alpha) =~ /^(.)/;
 
-    $c->stash->{items}{authors} = $c->model('Author')->get_by_alphabet($alpha);
+    $c->stash->{items}{authors} = [ $c->model('Author')->get_by_alphabet($alpha)->all ];
     $c->stash->{items}{alphabet} = uc($alpha);
 }
 
