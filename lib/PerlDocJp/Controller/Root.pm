@@ -43,6 +43,7 @@ sub index :Path :Args(0) {
 sub faq :Local { } 
 sub feedback :Local { }
 sub mirror :Local { }
+sub recent :Local { shift; shift->stash->{template} = 'index' }
 
 sub search :Local {
     my ( $self, $c ) = @_;
