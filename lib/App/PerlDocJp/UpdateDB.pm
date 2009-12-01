@@ -116,7 +116,7 @@ sub update_translated_pod_list {
     my $rs = $self->schema->resultset('PackageTranslation');
     while ( my $dist = $pod_dir->next ) {
         next unless $dist->is_dir;
-        next unless ($dist->dir_list(-1,1)) =~ /^(.+)-([\d\.]+)$/;
+        next unless ($dist->dir_list(-1,1)) =~ /^(.+)-([\d\._]+)$/;
 
         my ($dist_name, $version) = ($1, $2);
 
