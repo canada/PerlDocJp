@@ -129,6 +129,9 @@ sub update_translated_pod_list {
             if (! $parser->name) {
                 warn "failed to retrieve for $pod";
             } else {
+                if ($parser->name =~ /[^a-zA-Z0-9:_-]/ ) {
+                    next;
+                }
                 $rs->update_or_create(
                     { dist => $dist_name, version => $version, module => $parser->name, file => $pod }
                 );
