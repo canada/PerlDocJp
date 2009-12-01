@@ -133,7 +133,8 @@ sub update_translated_pod_list {
                     next;
                 }
                 $rs->update_or_create(
-                    { dist => $dist_name, version => $version, module => $parser->name, file => $pod }
+                    { dist => $dist_name, version => $version, module => $parser->name, file => $pod },
+                    { key => 'is_unique_module' },
                 );
             }
         }
@@ -172,12 +173,15 @@ sub update_package_details {
         # POD directory
         (my $dist_ver = basename($path)) =~ s/\.tar.gz$//;;
 
-        $rs->update_or_create({
-            module  => $module,
-            dist    => 'DUMMY',
-            version => $version,
-            path    => $path,
-        });
+        $rs->update_or_create(
+            {
+                module  => $module,
+                dist    => 'DUMMY',
+                version => $version,
+                path    => $path,
+            },
+            { key => 'is_unique_module' },
+        );
     }
 
     $guard->commit;
