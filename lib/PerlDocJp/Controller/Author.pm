@@ -28,7 +28,7 @@ PerlDocJp::Controller::Root - Root Controller for PerlDocJp
 =head2 index
 
 =cut
-sub author : Local {
+sub author : Chained('/') :PathPart :Args(0) {
     my ( $self, $c) = @_;
 
     my $count = 0;
@@ -37,6 +37,14 @@ sub author : Local {
         $c->stash->{items}[$count]{lc} = lc($_);
         $count++;
     }
+}
+
+sub author_by_alphabet :Chained('/') :PathPart('author') :Args(1) {
+    my($self, $c, $alpha) = @_;
+    ($alpha) = lc($alpha) =~ /^(.)/;
+
+    $c->stash->{items}{authors} = [ $c->model('Author')->get_by_alphabet($alpha)->all ];
+    $c->stash->{items}{alphabet} = uc($alpha);
 }
 
 sub author_detail :LocalRegex('^~([-a-z*]+)/?$') { # author xxx's page
@@ -59,7 +67,7 @@ sub end : ActionClass('RenderView') {}
 
 =head1 AUTHOR
 
-,,,
+Canada, Masakatz
 
 =head1 LICENSE
 

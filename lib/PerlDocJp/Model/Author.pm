@@ -17,7 +17,7 @@ sub get {
 
 sub get_by_alphabet {
     my($self, $alpha) = @_;
-    my $rs = $self->db->resltset('Author')->search({
+    my $rs = $self->db->resultset('Author')->search({
         author_uid => { 'LIKE' => "$alpha\%" },
     },{
           order_by => 'author_uid',

@@ -120,7 +120,6 @@ sub dist :LocalRegex('^~([-a-z*]+)/([^/]+)/?$') {
     $c->{stash}{items}{doc}  = $doc->get_doc_by_loc($dist_name);
     $c->{stash}{items}{dist} = $dist->get($dist_name);
 
-    $c->log->warn(YAML::Syck::Dump($dist->get($dist_name)));
 }
 
 sub modlist :Local {
