@@ -70,6 +70,8 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
     if($doc =~ /\.pod$/){
         my $fifo = "/var/lib/perldocjp/l10n_html"; # it must be named pipe or documents will be out of order.
 
+        mkdir("/tmp/perldoc_$$") or die;
+        chdir("/tmp/perldoc_$$");
         $SIG{CHLD} = 'IGNORE';
         if(my $pid = fork){
             open(my $read, "<$fifo");
@@ -77,7 +79,7 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
             close($read);
             wait;
         }elsif(defined $pid){
-        
+
             mkdir("/tmp/perldoc_$$") or die;
             chdir("/tmp/perldoc_$$");
             setsid;
@@ -87,13 +89,11 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
             $c->log->warn("Can't fork...");
         }
 
-
         $html = Encode::decode('Guess', $html);
         $html = Encode::encode('utf8', $html);
         $html =~ s/^.*?<body [^>]+?>//s;
         $html =~ s/^(.*)<\/body>.*$/$1/s;
-        $html =~ s/<h([1-5])><a /<h$1><a href="#__index__" class='u' title="click to to to top of document" /ig;
-        #$html =~ s/<h([1-5])>([^<])*</<h$1><a class='u' href="__index__">$2<\/a></ig;
+        $html =~ s/<h([1-5])><a /<h$1><a href="#__index__" class='u' title="click to top of document" /ig;
         $html = qq{<div class="pod">$html</div>};
 
         $doc =~ s/\.pod$//;
@@ -120,7 +120,6 @@ sub dist :LocalRegex('^~([-a-z*]+)/([^/]+)/?$') {
     $c->{stash}{items}{doc}  = $doc->get_doc_by_loc($dist_name);
     $c->{stash}{items}{dist} = $dist->get($dist_name);
 
-    $c->log->warn(YAML::Syck::Dump($dist->get($dist_name)));
 }
 
 sub modlist :Local {
