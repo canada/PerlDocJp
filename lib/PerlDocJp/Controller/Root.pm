@@ -71,7 +71,7 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
     if($doc =~ /\.pod$/){
         my $fifo = "/var/lib/perldocjp/l10n_html"; # it must be named pipe or documents will be out of order.
 
-        mkdir("/tmp/perldoc_$$") or die;
+        mkdir("/tmp/perldoc_$$");
         chdir("/tmp/perldoc_$$");
         $SIG{CHLD} = 'IGNORE';
         if(my $pid = fork){
