@@ -43,6 +43,7 @@ sub index :Path :Args(0) {
 sub faq :Local { } 
 sub feedback :Local { }
 sub mirror :Local { }
+sub recent :Local { shift; shift->stash->{template} = 'index' }
 
 sub search :Local {
     my ( $self, $c ) = @_;
@@ -80,7 +81,7 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
             wait;
         }elsif(defined $pid){
 
-            mkdir("/tmp/perldoc_$$") or die;
+            mkdir("/tmp/perldoc_$$");
             chdir("/tmp/perldoc_$$");
             setsid;
             pod2html("$dir$dist/$doc", "--outfile=$fifo");

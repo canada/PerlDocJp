@@ -22,24 +22,34 @@ sub get_by_alphabet {
     },{
           order_by => 'author_uid',
     });
-    return $rs;
+    return $self->_rs_hashref($rs);
 }
 
 sub get_dist {
     my($self, $id) = @_;
 
-    my @rs = $self->db->resultset('DistAuthor')->search({
+    my $rs = $self->db->resultset('DistAuthor')->search({
         author_id => $id,
     }, {
         "+select" => [ qw/dist_id.dist_name dist_id.latest_release/ ],
             "+as" => [ qw/dist_name latest_release/ ],
             join  => 'dist_id',
-    })->all;
+    });
+    $self->_rs_hashref($rs);
+}
+
+sub _rs_hashref{
+    my($self, $rs) = @_;
     my @return;
-    foreach(@rs){
+
+    while ($_ = $rs->next){
         my %row = $_->get_columns();
+        $row{author_uid_lc} = lc($row{author_uid}) 
+            if exists $row{author_uid};
         push(@return, \%row);
     }
+
     \@return;
 }
+
 1;
