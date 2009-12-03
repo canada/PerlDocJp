@@ -1,5 +1,9 @@
 package PerlDocJp::Model::Search;
 
+sub search{}
+
+1;
+__END__
 use strict;
 use warnings;
 use Estraier;

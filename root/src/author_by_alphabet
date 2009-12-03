@@ -1,0 +1,17 @@
+<div class=path> 
+<a href="/">ホーム</a> &gt;
+<a href="./">著者一覧</a> &gt; [% items.alphabet %]
+</div> 
+
+<center class=categories></center>
+
+<table width="100%"> 
+[% FOREACH author IN items.authors %]
+[% count = count + 1 -%]
+[% IF count % 2 == 1; class = 'r'; ELSE ; class = 's'; END -%]
+  <tr class=[% class %]> 
+    <td nowrap><a href="/~[% author.author_uid_lc %]">[% author.author_uid %]</a></td> 
+    <td width="80%">[% author.author_name %] &lt;[% author.author_email %]&gt;</td> 
+  </tr> 
+[% END %]
+</table>
