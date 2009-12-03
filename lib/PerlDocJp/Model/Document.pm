@@ -3,7 +3,7 @@ use Moose;
 use namespace::clean -except => qw(meta);
 
 extends 'Catalyst::Model';
-with "PerlDocJp::Model::WithDBIC";
+with "PerlDocJp::Model::Role";
 
 sub get_mod_by_loc {
     my($self, $loc) = @_;

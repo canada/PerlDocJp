@@ -3,7 +3,7 @@ use Moose;
 use namespace::clean -except => qw(meta);
 
 extends 'Catalyst::Model';
-with "PerlDocJp::Model::WithDBIC";
+with "PerlDocJp::Model::Role";
 
 sub get_all {
     my($self) = @_;
