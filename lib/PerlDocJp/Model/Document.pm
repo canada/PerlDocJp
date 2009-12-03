@@ -1,11 +1,9 @@
 package PerlDocJp::Model::Document;
-
-use strict;
-use parent 'Catalyst::Model';
-
 use Moose;
+use namespace::clean -except => qw(meta);
+
+extends 'Catalyst::Model';
 with "PerlDocJp::Model::Role";
-no Moose;
 
 sub get_mod_by_loc {
     my($self, $loc) = @_;
@@ -19,11 +17,13 @@ sub get_doc_by_loc {
 
 sub get_by_loc {
     my($self, $loc, $cond) = @_;
-    my @rs = $self->db->resultset('Document')->search({
+    my @rs = $self->schema->resultset('Document')->search({
         doc_loc => { LIKE => "$loc/%"},
         %$cond,
     }, {})->all;
     \@rs;
 }
+
+__PACKAGE__->meta->make_immutable();
 
 1;
