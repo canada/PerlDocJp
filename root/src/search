@@ -23,7 +23,7 @@ Results <b>1</b> - <b>10</b> of
 <!--item--> 
 <p><h2 class=sr><a href="[% item.uri %]"><b>[% item.title %]</b></a></h2> 
 <small>[% item.misc %]</small><br/> 
-<small>   <a href="[% item.title %]">YAML-0.70</a> 
+<small>   <a href="[% item.dist_uri %]">[% item.dist_name %]</a> 
 
 -
 <span class=date>[% item.mdate %]訳</span> -

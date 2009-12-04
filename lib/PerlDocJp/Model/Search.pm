@@ -1,9 +1,5 @@
 package PerlDocJp::Model::Search;
 
-sub search{}
-
-1;
-__END__
 use strict;
 use warnings;
 use Estraier;
@@ -42,6 +38,8 @@ sub search {
         $row{author_uid} = lc($row{author_uid});
         $row{cdate} =~ s/T.*$//;
         $row{mdate} =~ s/T.*$//;
+        ($row{dist_name})   = $row{uri} =~ m{^/[^/]+/([^/]+)/};
+        ($row{dist_uri})    = $row{uri} =~ m{^(/[^/]+/[^/]+/)};
         push(@return, \%row);
     }
     return \@return;

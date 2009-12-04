@@ -17,7 +17,7 @@ sub get_doc_by_loc {
 
 sub get_by_loc {
     my($self, $loc, $cond) = @_;
-    my @rs = $self->schema->resultset('Document')->search({
+    my @rs = $self->db->resultset('Document')->search({
         doc_loc => { LIKE => "$loc/%"},
         %$cond,
     }, {})->all;
