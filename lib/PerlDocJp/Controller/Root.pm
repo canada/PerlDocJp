@@ -1,37 +1,14 @@
 package PerlDocJp::Controller::Root;
-
 use strict;
 use warnings;
 use parent 'Catalyst::Controller';
-use YAML::Syck;
 use Encode;
 use Encode::Guess qw/eucjp utf8 shiftjis 7bit-jis/;
+use Pod::L10N::Html;
+use POSIX (qw/setsid/);
+use YAML::Syck;
 
-#
-# Sets the actions in this controller to be registered with no prefix
-# so they function identically to actions created in MyApp.pm
-#
 __PACKAGE__->config->{namespace} = '';
-
-=head1 NAME
-
-PerlDocJp::Controller::Root - Root Controller for PerlDocJp
-
-=head1 DESCRIPTION
-
-[enter your description here]
-
-=head1 METHODS
-
-=cut
-
-=head2 index
-
-=cut
-
-
-sub begin :Private {
-}
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
@@ -55,9 +32,6 @@ sub search :Local {
 }
 
 
-use Pod::L10N::Html;
-use POSIX (qw/setsid/);
-use Apache2::SubProcess;
 
 sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
     my ( $self, $c) = @_;
@@ -97,10 +71,10 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
         $doc =~ s/\.pod$//;
         $doc =~ s#/#::#g;
     }
-    $c->{stash}{items}{html}   = $html; 
-    $c->{stash}{items}{author} = $auth;
-    $c->{stash}{items}{dist}   = $dist;
-    $c->{stash}{items}{module} = $doc;
+    $c->stash->{items}{html}   = $html; 
+    $c->stash->{items}{author} = $auth;
+    $c->stash->{items}{dist}   = $dist;
+    $c->stash->{items}{module} = $doc;
 }
 
 sub dist :LocalRegex('^~([-a-z*]+)/([^/]+)/?$') {
@@ -114,9 +88,9 @@ sub dist :LocalRegex('^~([-a-z*]+)/([^/]+)/?$') {
     my $doc  = $c->model('Document');
     my $dist = $c->model('Dist');
 
-    $c->{stash}{items}{pod}  = $doc->get_mod_by_loc($dist_name);
-    $c->{stash}{items}{doc}  = $doc->get_doc_by_loc($dist_name);
-    $c->{stash}{items}{dist} = $dist->get($dist_name);
+    $c->stash->{items}{pod}  = $doc->get_mod_by_loc($dist_name);
+    $c->stash->{items}{doc}  = $doc->get_doc_by_loc($dist_name);
+    $c->stash->{items}{dist} = $dist->get($dist_name);
 
 }
 
@@ -128,7 +102,7 @@ sub modlist :Local {
     my $dist = $c->model('Dist');
     $dist->db($c->model('DBIC'));
 
-    $c->{stash}{items} = $dist->get_all();
+    $c->stash->{items} = $dist->get_all();
 }
 
 sub _dist2mod {
@@ -152,23 +126,6 @@ sub default :Path {
     $c->response->status(404);
 }
 
-=head2 end
-
-Attempt to render a view, if needed.
-
-=cut
-
 sub end : ActionClass('RenderView') {}
-
-=head1 AUTHOR
-
-,,,
-
-=head1 LICENSE
-
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-=cut
 
 1;

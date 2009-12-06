@@ -3,12 +3,12 @@ use Moose;
 use namespace::clean -except => qw(meta);
 
 extends 'Catalyst::Model';
-with "PerlDocJp::Model::Role";
+with "PerlDocJp::Model::WithDBIC";
 
 sub get_all {
     my($self) = @_;
     my @return;
-    my @rs = $self->db->resultset('Dist')->search({
+    my @rs = $self->schema->resultset('Dist')->search({
     }, {
         '+select' => [ qw/author_id.author_uid author_id.author_name/ ],
         '+as'     => [ qw/          author_uid           author_fullname/ ],
@@ -25,7 +25,7 @@ sub get_all {
 
 sub get {
     my($self, $dist_name) = @_;
-    my %row = $self->db->resultset('Dist')->search({
+    my %row = $self->schema->resultset('Dist')->search({
         dist_name => $dist_name,
     }, {
         '+select' => [ qw/author_id.author_uid author_id.author_name/ ],
