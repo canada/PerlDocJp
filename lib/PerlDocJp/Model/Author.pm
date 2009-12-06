@@ -26,8 +26,7 @@ sub get_by_alphabet {
 sub get_dist {
     my($self, $id) = @_;
 
-    my $rs = $self->schema->resultset('DistAuthor')->search({
-    my @rs = $self->schema->resultset('DistAuthor')->search(
+    my $rs = $self->schema->resultset('DistAuthor')->search(
         {
             author_id => $id,
         }, {
