@@ -6,8 +6,6 @@ use Estraier;
 
 $Estraier::DEBUG = 1;
 
-
-
 my $db = new Database();
 
 sub search {
