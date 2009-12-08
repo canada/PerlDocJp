@@ -2,7 +2,7 @@
 # you want to use YAML like in old versions of Catalyst
 name: PerlDocJp
 source:
-  modules: /data/perldocjp/docs/modules/
-  perldoc: /data/perldocjp/docs/perl/
-  tools: /data/perldocjp/tools/
-  data: /data/perldocjp/canada/
+  modules: /data/cvs/perldocjp/docs/modules/
+  perldoc: /data/cvs/perldocjp/docs/perl/
+  tools: /data/cvs/perldocjp/tools/
+  data: /data/cvs/perldocjp/canada/

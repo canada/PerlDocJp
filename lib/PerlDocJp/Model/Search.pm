@@ -8,7 +8,7 @@ $Estraier::DEBUG = 1;
 
 
 my $db = new Database();
-$db->open("/data/perldocjp/canada/he/casket", Database::DBREADER) || die;
+$db->open("/data/cvs/perldocjp/canada/he/casket", Database::DBREADER) || die;
 
 
 sub search {
