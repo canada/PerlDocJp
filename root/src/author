@@ -8,7 +8,7 @@
 <tr>
 [% FOREACH item IN items %]
 [% IF count % 2 == 1; class = 'r'; ELSE ; class = 's'; END -%]
-    <td class=[% class %] align=center><a href="/author/[% item.lc %]">[% item.uc %]</a></td> 
+    <td class=[% class %] align=center><b><a href="/author/[% item.lc %]">[% item.uc %]</a></b></td> 
 [% IF count == 12 %]<tr></tr>[% END %]
 [% count = count + 1 -%]
 [% END %]
