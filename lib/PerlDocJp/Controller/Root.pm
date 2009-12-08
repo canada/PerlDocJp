@@ -4,7 +4,6 @@ use warnings;
 use parent 'Catalyst::Controller';
 use Encode;
 use Encode::Guess qw/eucjp utf8 shiftjis 7bit-jis/;
-use Pod::L10N::Html;
 use POSIX (qw/setsid/);
 use YAML::Syck;
 
@@ -32,7 +31,9 @@ sub search :Local {
     $c->stash->{items}{result} = $result;
 }
 
-
+use File::Temp;
+#use Pod::Xhtml;
+use Pod::L10N::Html;
 
 sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
     my ( $self, $c) = @_;
@@ -44,23 +45,13 @@ sub pod :LocalRegex('^~([-a-z*]+)/([^/]+)/(.+)$') {
     my $html;
 
     if($doc =~ /\.pod$/){
-        my $fifo = "/var/lib/perldocjp/l10n_html"; # it must be named pipe or documents will be out of order.
+        my $tmpdir = "/tmp/perldoc_$$";
+        mkdir($tmpdir);
+        chdir($tmpdir);
 
-        $SIG{CHLD} = 'IGNORE';
-        if(my $pid = fork){
-            open(my $read, "<$fifo");
-            $html = join(q{}, <$read>);
-            close($read);
-            wait;
-        }elsif(defined $pid){
-            mkdir("/tmp/perldoc_$$");
-            chdir("/tmp/perldoc_$$");
-            setsid;
-            pod2html("$dir$dist/$doc", "--outfile=$fifo");
-            CORE::exit(0);
-        }else{
-            $c->log->warn("Can't fork...");
-        }
+        pod2html("$dir$dist/$doc", "--outfile=outfile.pod");
+        open(my $fh, '<', 'outfile.pod');
+        $html = join(q{}, <$fh>);
 
         $html = Encode::decode('Guess', $html);
         $html = Encode::encode('utf8', $html);
