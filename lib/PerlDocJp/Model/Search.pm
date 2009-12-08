@@ -6,13 +6,11 @@ use Estraier;
 
 $Estraier::DEBUG = 1;
 
-
 my $db = new Database();
-$db->open("/data/cvs/perldocjp/canada/he/casket", Database::DBREADER) || die;
-
 
 sub search {
-    my ($self, $query) = @_;
+    my ($self, $query, $casket) = @_;
+    $db->open($casket, Database::DBREADER) || die $!;
     # create a search condition object
     my $cond = new Condition();
     # set the search phrase to the search condition object

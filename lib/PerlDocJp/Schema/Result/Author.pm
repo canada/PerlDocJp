@@ -3,7 +3,7 @@ package PerlDocJp::Schema::Result::Author;
 use strict;
 use warnings;
 
-use base 'DBIx::Class';
+use base 'PerlDocJp::Schema::Result';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "Core");
 __PACKAGE__->table("author");

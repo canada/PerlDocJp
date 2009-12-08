@@ -3,6 +3,7 @@
 name: PerlDocJp
 source:
   modules: /data/cvs/perldocjp/docs/modules/
-  perldoc: /data/cvs/perldocjp/docs/perl/
-  tools: /data/cvs/perldocjp/tools/
-  data: /data/cvs/perldocjp/canada/
+  estraier: /data/cvs/perldocjp/canada/he/casket
+  perldoc: /data/perldocjp/docs/perl/
+  tools: /data/perldocjp/tools/
+  data: /data/perldocjp/canada/
