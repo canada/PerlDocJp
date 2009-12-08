@@ -7,12 +7,12 @@ use Estraier;
 $Estraier::DEBUG = 1;
 
 
-my $db = new Database();
-$db->open("/data/perldocjp/canada/he/casket", Database::DBREADER) || die;
 
+my $db = new Database();
 
 sub search {
-    my ($self, $query) = @_;
+    my ($self, $query, $casket) = @_;
+    $db->open($casket, Database::DBREADER) || die $!;
     # create a search condition object
     my $cond = new Condition();
     # set the search phrase to the search condition object

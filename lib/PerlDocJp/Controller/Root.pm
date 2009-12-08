@@ -24,10 +24,11 @@ sub recent :Local { shift; shift->stash->{template} = 'index' }
 
 sub search :Local {
     my ( $self, $c ) = @_;
-    my $db = $c->model('Search');
-    my $query = $c->req->param('query');
-    my $result = $db->search($query);
-    $c->stash->{items}{found} = @$result + 0;
+    my $db     = $c->model('Search');
+    my $query  = $c->req->param('query');
+    #my $result = $db->search($query);
+    my $result = $db->search($query, $c->config->{source}{estraier});
+    $c->stash->{items}{found}  = @$result + 0;
     $c->stash->{items}{result} = $result;
 }
 
